@@ -6,7 +6,10 @@
     <title>KUS 버스 - 메인</title>
     <link rel="icon" type="image/x-icon" href="/static/images/cropped-korea-Univ.-logo_favicon_512.ico">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="calendar-style.css">
+    
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
@@ -45,6 +48,60 @@
             </div>
         </div>
     </div>
+    
+    <div id="calendar-fab" class="calendar-fab" title="캘린더 보기">
+        <span>📅</span>
+    </div>
+
+    <div id="calendar-modal" class="modal-overlay">
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <div id="calendar-title-container" class="calendar-title-container">
+                    <h2 id="calendar-title"></h2>
+                    <span class="arrow-down">▼</span>
+                </div>
+                <div class="header-buttons">
+                    <button id="go-to-today" title="오늘로 이동">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6"/><path d="M3 10h18"/><path d="M8 2v4"/><path d="M16 2v4"/><circle cx="18" cy="18" r="4"/><path d="M18 16v2h1"/></svg>
+                    </button>
+                    <button id="prev-month" title="이전 달">◀</button>
+                    <button id="next-month" title="다음 달">▶</button>
+                    <button id="close-modal" title="닫기">&times;</button>
+                </div>
+            </div>
+            
+            <div class="calendar-main">
+                <div class="calendar-view">
+                    <div class="calendar-grid" id="calendar-days">
+                        <div class="day-name sunday">일</div>
+                        <div class="day-name">월</div>
+                        <div class="day-name">화</div>
+                        <div class="day-name">수</div>
+                        <div class="day-name">목</div>
+                        <div class="day-name">금</div>
+                        <div class="day-name saturday">토</div>
+                    </div>
+                    <div class="calendar-grid" id="calendar-body">
+                        </div>
+                </div>
+                <div id="date-picker" class="date-picker">
+                    <div class="picker-header">
+                        <select id="year-select"></select>
+                    </div>
+                    <div id="month-select" class="month-select">
+                        </div>
+                </div>
+            </div>
+
+            <div id="schedule-display" class="schedule-display">
+                <div class="scroll-guide">
+                    <span class="scroll-icon">↓</span> 스크롤하여 더 보기
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="/static/js/main.js"></script>
+    <script src="calendar-logic.js"></script>
 </body>
 </html>

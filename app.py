@@ -241,4 +241,4 @@ if __name__ == '__main__':
     logger.info("서버 시작")
     load_current_menu()
     init_scheduler()
-    app.run(debug=True, port=8008)
+    app.run(debug=True, port=8080)
