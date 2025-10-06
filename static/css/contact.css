@@ -1,0 +1,342 @@
+:root {
+    --ku-crimson: #8B1F41;
+    --ku-gold: #8F8F8F;
+    --ku-light-gray: #f5f5f5;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    min-height: 100vh;
+}
+
+.header {
+    background: linear-gradient(to right, var(--ku-crimson), #6b1731);
+    color: white;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.header h1 {
+    font-size: 1.8em;
+    margin: 0 0 0 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.ku-logo {
+    width: 60px;
+    height: auto;
+    margin: 0;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.contact-info {
+    margin: 20px 0;
+}
+
+.contact-section {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+.contact-section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+.contact-section h2 {
+    color: var(--ku-crimson);
+    margin: 0 0 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--ku-crimson);
+}
+
+.contact-section p {
+    margin: 10px 0;
+    color: #333;
+    line-height: 1.6;
+    white-space: normal;
+    max-width: 100%;
+}
+
+.contact-section a {
+    color: var(--ku-crimson);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.contact-section a:hover {
+    color: var(--ku-gold);
+}
+
+.back-button {
+    display: block;
+    width: 200px;
+    margin: 30px auto;
+    padding: 12px;
+    background: var(--ku-crimson);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 500;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.back-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    background: #6b1731;
+}
+
+.update-toggle {
+    cursor: pointer;
+    user-select: none;
+}
+
+.toggle-icon {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.update-history {
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 10px;
+    transition: max-height 0.3s ease-out;
+}
+
+.update-history.collapsed {
+    display: none;
+}
+
+.update-toggle.collapsed .toggle-icon {
+    transform: rotate(-90deg);
+}
+
+.click-guide {
+    font-size: 0.7em;
+    color: #666;
+    font-weight: normal;
+}
+
+.update-item {
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+    margin-bottom: 10px;
+}
+
+.update-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.update-date {
+    color: var(--ku-crimson);
+    margin-bottom: 5px;
+}
+
+.update-history::-webkit-scrollbar {
+    width: 8px;
+}
+
+.update-history::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.update-history::-webkit-scrollbar-thumb {
+    background: var(--ku-crimson);
+    border-radius: 4px;
+}
+
+.update-history::-webkit-scrollbar-thumb:hover {
+    background: #6b1731;
+}
+
+.sub-section {
+    margin: 15px 0;
+    padding: 10px;
+    border-left: 3px solid #8b1f41;
+    background-color: rgba(139, 31, 65, 0.05);
+}
+
+.sub-section h3 {
+    margin-top: 0;
+    color: #8b1f41;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.scroll-guide {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+    animation: fadeIn 0.5s ease-in-out;
+    z-index: 10;
+    margin-bottom: 10px;
+}
+
+.update-items {
+    position: relative;  /* 추가: 스크롤 가이드의 기준점 설정 */
+}
+
+.scroll-guide-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.scroll-icon {
+    font-size: 1.2em;
+    animation: scrollAnimation 1.5s infinite;
+}
+
+@keyframes scrollAnimation {
+    0% { transform: translateY(-5px); }
+    50% { transform: translateY(5px); }
+    100% { transform: translateY(-5px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@media (max-width: 768px) {
+    .scroll-guide {
+        display: none;
+    }
+}
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 15px;
+        max-width: 90%;
+    }
+
+    .contact-section {
+        padding: 20px;
+    }
+
+    .contact-section h2 {
+        font-size: 1.4em;
+    }
+
+    .contact-section p {
+        font-size: 1em;
+        word-break: keep-all;
+        line-height: 1.6;
+    }
+
+    .contact-section a {
+        word-break: break-all;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 12px;
+    }
+
+    .header h1 {
+        font-size: 1.3em;
+    }
+
+    .ku-logo {
+        width: 35px;
+    }
+
+    .container {
+        padding: 10px;
+        max-width: 95%;
+    }
+
+    .contact-section {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+    .contact-section h2 {
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+
+    .contact-section p {
+        font-size: 0.9em;
+        margin: 8px 0;
+        line-height: 1.4;
+    }
+
+    .contact-section a {
+        font-size: 0.85em;
+        word-break: break-all;
+    }
+
+    .back-button {
+        width: 160px;
+        padding: 10px;
+        font-size: 0.9em;
+        margin: 20px auto;
+    }
+}
+
+@media (max-width: 375px) {
+    .header h1 {
+        font-size: 1.1em;
+    }
+
+    .ku-logo {
+        width: 30px;
+    }
+
+    .contact-section h2 {
+        font-size: 1em;
+    }
+
+    .contact-section p {
+        font-size: 0.85em;
+    }
+
+    .back-button {
+        width: 140px;
+        font-size: 0.85em;
+    }
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KUS 버스 - 메인</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/cropped-korea-Univ.-logo_favicon_512.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+</head>
+<body>
+    <div class="header">
+        <img src="/static/images/Global_Symbol.jpg" alt="고려대학교 로고" class="ku-logo">
+        <h1>고려대학교(세종) 셔틀버스 배차표</h1>
+    </div>
+
+    <div class="container">
+        <div class="button-time-container">
+            <div class="buttons-wrapper">
+                <a href="/full-schedule" class="view-all-button">시간표 전체</a>
+                <a href="/menu" class="menu-button">식단표 보기</a>
+                <a href="/contact" class="contact-button">Contact ME</a>
+            </div>
+            <div class="current-time">
+                <div class="current-time-header">현재 시간</div>
+                <div class="current-time-content" id="current-time-display"></div>
+            </div>
+        </div>
+        
+        <div class="next-buses">
+            <div class="bus-section">
+                <h2>학교 → 조치원역</h2>
+                <div id="nextSchoolToStation"></div>
+            </div>
+            <div class="bus-section">
+                <h2>조치원역 → 학교</h2>
+                <div id="nextStationToSchool"></div>
+            </div>
+            <div class="bus-section">
+                <h2>오송역 노선</h2>
+                <div id="nextOsongBuses"></div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

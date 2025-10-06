@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="고려대학교 세종캠퍼스 학생식당 및 교직원식당 주간 식단표">
+    <meta name="keywords" content="고려대학교, 세종캠퍼스, 학식, 식단표, 학생식당, 교직원식당">
+    <title>KUS 버스 - 식단표</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/cropped-korea-Univ.-logo_favicon_512.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/menu.css">
+</head>
+<body>
+    <div class="header">
+        <img src="/static/images/Global_Symbol.jpg" alt="고려대학교 로고" class="ku-logo">
+        <h1>고려대학교(세종) 학식 및 교식 메뉴</h1>
+    </div>
+
+    <div class="container">
+        <div class="menu-navigation">
+            <a href="/" class="back-button">메인으로 돌아가기</a>
+        </div>
+        
+        <div class="menu-container">
+            <!-- 공지사항 섹션 -->
+            <div class="notice-section">
+                <p class="notice-text">
+                    ❗️매주 월요일 새벽에 식단표 업데이트를 시도합니다.<br>
+                    ❗️업데이트 과정에서 오류가 발생할 수 있습니다.<br>
+                    <strong>❗️오류가 발생할 경우 새로고침 해주세요.</strong>
+                </p>
+            </div>
+
+            <!-- 로딩 상태 표시 -->
+            <div id="loading-indicator" class="loading-indicator">
+                <p>식단표를 불러오는 중입니다...</p>
+            </div>
+            
+            <!-- 에러 메시지 표시 영역 -->
+            <div id="error-message" class="error-message" style="display: none;">
+                <p>식단표를 불러오는데 실패했습니다. 잠시 후 다시 시도해주세요.</p>
+            </div>
+
+            <div class="week-info">
+                <h3>이번 주 메뉴</h3>
+            </div>
+            
+            <div class="cafeteria-section" id="studentCafeteria">
+                <h2>학생식당</h2>
+                <div class="menu-content">
+                    <table class="menu-table">
+                        <thead>
+                            <tr>
+                                <th>구분</th>
+                                <th>월</th>
+                                <th>화</th>
+                                <th>수</th>
+                                <th>목</th>
+                                <th>금</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>조식<br>(07:30~09:00)</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>중식<br>(11:30~13:30)</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>석식<br>(17:30~18:30)</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="cafeteria-section" id="staffCafeteria">
+                <h2>교직원식당</h2>
+                <div class="menu-content">
+                    <table class="menu-table">
+                        <thead>
+                            <tr>
+                                <th>구분</th>
+                                <th>월</th>
+                                <th>화</th>
+                                <th>수</th>
+                                <th>목</th>
+                                <th>금</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>중식<br>(11:30~13:30)</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 추가 공지사항 섹션 -->
+            <div class="notice-section">
+                <p class="notice-text">
+                    * 메뉴는 식자재 수급 상황에 따라 변경될 수 있습니다.<br>
+                    * 알레르기 유발 식품은 식당 게시판을 참고해 주시기 바랍니다.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/menu.js"></script>
+</body>
+</html>

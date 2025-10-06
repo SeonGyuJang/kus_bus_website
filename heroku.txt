@@ -1,0 +1,6 @@
+heroku login
+heroku git:remote -a kus-bus-app
+git init
+git add .
+git commit -m "Initial commit"
+git push heroku main

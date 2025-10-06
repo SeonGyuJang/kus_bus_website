@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KUS 버스 시간표</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/cropped-korea-Univ.-logo_favicon_512.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <style>
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 1.3rem !important;
+                padding: 10px 5px !important;
+            }
+            
+            .schedule-title {
+                font-size: 1.1rem !important;
+                padding: 10px !important;
+            }
+            
+            .table-wrapper h3 {
+                font-size: 1rem !important;
+            }
+            
+            table {
+                font-size: 0.85rem;
+                margin: 10px 0;
+            }
+            
+            th, td {
+                padding: 6px 4px;
+            }
+            
+            .floating-icon {
+                width: 60px !important;
+                height: 60px !important;
+            }
+            
+            .floating-icon img {
+                width: 45px !important;
+                height: 45px !important;
+                margin: 8px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    </div>
+
+    <h1>고려대학교 세종캠퍼스 셔틀버스 시간표</h1>
+    <p class="notice">
+        오른쪽 아래 아이콘을 클릭하면 고려대학교(세종) 홈페이지<span class="mobile-break"></span> 셔틀버스 노선 페이지로 이동합니다.
+    </p>    
+    <div class="button-container">
+        <button class="uniform-button" onclick="window.location.href='/'">← 메인 페이지로 돌아가기</button>
+    </div>
+
+    <div class="button-container">
+        <button class="uniform-button active" onclick="showRoute('school-station')">학교 ↔ 조치원역</button>
+        <button class="uniform-button" onclick="showRoute('osong-route')">오송역 노선</button>
+    </div>
+
+    <div id="school-station" class="tab-content">
+        <div class="schedule-section">
+            <h2 class="schedule-title">학교 ↔ 조치원역 시간표 (평일)</h2>
+            <div class="table-container">
+                <div class="table-wrapper">
+                    <h3>학교 → 조치원역</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>출발시간</th>
+                                <th>비고</th>
+                            </tr>
+                        </thead>
+                        <tbody id="school-to-station-weekday">
+                            <!-- JavaScript로 데이터 삽입 -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-wrapper">
+                    <h3>조치원역 → 학교</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>출발시간</th>
+                                <th>비고</th>
+                            </tr>
+                        </thead>
+                        <tbody id="station-to-school-weekday">
+                            <!-- JavaScript로 데이터 삽입 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="schedule-section">
+            <h2 class="schedule-title">학교 ↔ 조치원역 시간표 (일요일)</h2>
+            <div class="table-container">
+                <div class="table-wrapper">
+                    <h3>학교 → 조치원역</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>출발시간</th>
+                                <th>비고</th>
+                            </tr>
+                        </thead>
+                        <tbody id="school-to-station-sunday">
+                            <!-- JavaScript로 데이터 삽입 -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-wrapper">
+                    <h3>조치원역 → 학교</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>출발시간</th>
+                                <th>비고</th>
+                            </tr>
+                        </thead>
+                        <tbody id="station-to-school-sunday">
+                            <!-- JavaScript로 데이터 삽입 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="osong-route" class="tab-content" style="display: none;">
+        <div class="schedule-section">
+            <h2 class="schedule-title">오송역 노선 시간표 (평일)</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>출발시간</th>
+                            <th>노선</th>
+                            <th>비고</th>
+                        </tr>
+                    </thead>
+                    <tbody id="osong-schedule">
+                        <!-- JavaScript로 데이터 삽입 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://sejong.korea.ac.kr/koreaSejong/7803/subview.do" 
+       class="floating-icon" 
+       target="_blank">
+        <img src="/static/images/Global_Symbol.jpg" alt="고려대학교 심볼">
+    </a>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

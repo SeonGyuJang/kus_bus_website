@@ -1,0 +1,421 @@
+/* PC 광고 컨테이너 */
+.ad-container-pc {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    display: block;
+}
+
+/* 모바일 광고 컨테이너 */
+.ad-container-mobile {
+    display: none;
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+    -webkit-text-size-adjust: 100%;
+}
+
+.header {
+    background-color: #8b1f41;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.ku-logo {
+    height: 40px;
+    width: auto;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.menu-navigation {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #8b1f41;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    margin: 0 auto;
+}
+
+.back-button:hover {
+    background-color: #6b1832;
+}
+
+.loading-indicator {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+}
+
+.error-message {
+    text-align: center;
+    padding: 20px;
+    color: #dc3545;
+    background-color: #f8d7da;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.week-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.week-info h3 {
+    color: #8b1f41;
+    font-weight: 500;
+    margin: 0;
+}
+
+.cafeteria-section {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.cafeteria-section h2 {
+    color: #8b1f41;
+    margin: 0 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #8b1f41;
+}
+
+.menu-content {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+}
+
+.menu-table {
+    width: 100%;
+    border-collapse: separate;
+    background-color: white;
+    table-layout: fixed;
+    border-spacing: 0;
+}
+
+.menu-table th,
+.menu-table td {
+    border: 1px solid #dee2e6;
+    padding: 12px;
+    text-align: center;
+    vertical-align: top;
+    word-break: keep-all;
+    white-space: normal;
+    word-wrap: break-word;
+    min-width: 100px;
+}
+
+.menu-table th {
+    background-color: #f8f9fa;
+    color: #495057;
+    font-weight: 500;
+    vertical-align: middle;
+}
+
+.menu-table thead th {
+    border-bottom: 2px solid #dee2e6;
+}
+
+.menu-table thead th:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background-color: #f8f9fa;
+    border-right: 2px solid #dee2e6;
+    box-shadow: 2px 0 5px -2px rgba(0,0,0,0.1);
+}
+
+.menu-table tbody th {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    width: 120px;
+    background-color: #f5f5f5;
+    border-right: 2px solid #dee2e6;
+    box-shadow: 2px 0 5px -2px rgba(0,0,0,0.1);
+}
+
+.menu-category {
+    border-bottom: 1px solid #dee2e6;
+    padding: 8px 0;
+    margin-bottom: 8px;
+}
+
+.menu-category:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.menu-type {
+    font-weight: 500;
+    color: #8b1f41;
+    margin-bottom: 5px;
+    font-size: 0.95em;
+}
+
+.menu-item {
+    margin: 5px 0;
+    line-height: 1.4;
+    color: #495057;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.notice-section {
+    background-color: #f8f9fa;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #e9ecef;
+}
+
+.notice-text {
+    color: #495057;
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* 스와이프 안내 오버레이 */
+.swipe-guide {
+    display: none;  /* 기본적으로 숨김 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;  /* 상하 모두 둥글게 수정 */
+    animation: fadeIn 0.5s ease-in-out;
+    z-index: 10;
+}
+
+.swipe-guide-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.swipe-icon {
+    font-size: 1.2em;
+    animation: swipeAnimation 1.5s infinite;
+}
+
+@keyframes swipeAnimation {
+    0% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    100% { transform: translateX(-10px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .ad-container-pc {
+        display: none !important;
+    }
+    
+    .ad-container-mobile {
+        display: block !important;
+    }
+
+    .container {
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .menu-content {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 -10px;
+        position: relative;  /* 스와이프 가이드 위치 기준점 */
+    }
+    
+    .swipe-guide {
+        display: block;
+    }
+
+    .menu-table {
+        min-width: 600px;
+        font-size: 0.9em;
+        table-layout: fixed;
+    }
+
+    .menu-table th,
+    .menu-table td {
+        padding: 8px 4px;
+        font-size: 0.85em;
+    }
+
+    .header {
+        padding: 15px 10px;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .ku-logo {
+        height: 30px;
+        margin: 0;
+    }
+
+    .header h1 {
+        font-size: 1.2em;
+        margin: 0;
+    }
+
+    .back-button {
+        padding: 6px 12px;
+        font-size: 0.9em;
+    }
+
+    .cafeteria-section {
+        padding: 15px 10px;
+        margin-bottom: 20px;
+    }
+
+    .notice-section {
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+
+    .notice-text {
+        font-size: 0.85rem;
+    }
+
+    .menu-table thead th:first-child,
+    .menu-table tbody th {
+        width: 100px;
+    }
+
+    .menu-item {
+        font-size: 0.85em;
+        line-height: 1.3;
+        margin: 3px 0;
+    }
+
+    .menu-type {
+        font-size: 0.85em;
+    }
+}
+
+/* 작은 모바일 화면 최적화 */
+@media (max-width: 480px) {
+    .header {
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .ku-logo {
+        height: 25px;
+    }
+
+    .header h1 {
+        font-size: 1em;
+    }
+
+    .menu-table th,
+    .menu-table td {
+        padding: 6px 4px;
+        font-size: 0.85em;
+    }
+
+    .menu-table thead th:first-child,
+    .menu-table tbody th {
+        width: 90px;
+    }
+
+    .menu-item {
+        margin: 3px 0;
+        line-height: 1.3;
+        font-size: 0.85em;
+    }
+
+    .cafeteria-section h2 {
+        font-size: 1.1em;
+        margin-bottom: 15px;
+    }
+
+    .week-info h3 {
+        font-size: 1em;
+    }
+
+    .loading-indicator,
+    .error-message {
+        padding: 15px 10px;
+        font-size: 0.9em;
+    }
+}
+
+/* 가로 모드 최적화 */
+@media (max-height: 500px) and (orientation: landscape) {
+    .header {
+        padding: 10px;
+    }
+
+    .ku-logo {
+        height: 25px;
+    }
+
+    .header h1 {
+        font-size: 1.1em;
+    }
+
+    .container {
+        margin: 10px auto;
+    }
+}
+
+/* 스크롤바 스타일링 */
+.menu-content::-webkit-scrollbar {
+    height: 8px;
+}
+
+.menu-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.menu-content::-webkit-scrollbar-thumb {
+    background: #8b1f41;
+    border-radius: 4px;
+}
+
+.menu-content::-webkit-scrollbar-thumb:hover {
+    background: #6b1832;
+}
