@@ -543,6 +543,23 @@ body {
     opacity: 1;
 }
 
+/* ==== [캘린더 모달 제목 추가] ==== */
+.calendar-modal-title {
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--ku-crimson);
+    margin-bottom: 20px;
+}
+
+.calendar-modal-title h1 {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--ku-crimson);
+    letter-spacing: -0.5px;
+}
+/* ==== [캘린더 모달 제목 끝] ==== */
+
 /* Calendar Header */
 .calendar-header {
     display: flex;
@@ -643,7 +660,12 @@ body {
     font-size: 0.85em;
 }
 
-/* ==== [BUG FIX START] ==== */
+/* ==== [모바일 최적화: 날짜 셀 잘림 방지] ==== */
+.calendar-body-wrapper {
+    padding: 0 5px; /* 좌우 여백 추가로 동그라미 잘림 방지 */
+    margin: 0 -5px; /* 전체 정렬 유지 */
+}
+
 .date-cell {
     position: relative;
     display: flex;
@@ -654,7 +676,6 @@ body {
     border-radius: 50%;
     aspect-ratio: 1 / 1;
     font-size: 0.9em;
-    /* transition 속성 제거 - 즉시 변경되도록 */
     cursor: pointer;
 }
 
@@ -665,29 +686,27 @@ body {
 
 .date-cell:not(.other-month):hover { 
     background-color: var(--bg-light-gray);
-    transition: background-color 0.2s; /* 호버 효과에만 transition 적용 */
+    transition: background-color 0.2s;
 }
 
 /* Date States */
 .today {
-    background-color: #fbebee; /* Light crimson background for today */
+    background-color: #fbebee;
     color: var(--ku-crimson);
     font-weight: 700;
 }
 
-/* 활성화된 날짜 스타일 - 즉시 적용 */
 .date-cell.active-date {
     background-color: var(--ku-crimson) !important;
     color: white !important;
     font-weight: 700;
 }
 
-/* 오늘이면서 활성화된 경우 */
 .date-cell.today.active-date {
     background-color: var(--ku-crimson) !important;
     color: white !important;
 }
-/* ==== [BUG FIX END] ==== */
+/* ==== [날짜 셀 잘림 방지 끝] ==== */
 
 
 .saturday { color: #3b82f6; }
@@ -739,7 +758,7 @@ body {
     color: white;
 }
 
-/* Schedule Display & Scroll Guide */
+/* ==== [모바일 최적화: 스크롤 인디케이터 추가] ==== */
 .schedule-display {
     position: relative;
     margin-top: 20px;
@@ -748,11 +767,52 @@ body {
     text-align: left;
     max-height: 100px;
     overflow-y: auto;
-    padding-right: 5px;
+    padding-right: 12px; /* 스크롤 인디케이터 공간 확보 */
 }
-.schedule-display::-webkit-scrollbar { width: 5px; }
-.schedule-display::-webkit-scrollbar-track { background: transparent; }
-.schedule-display::-webkit-scrollbar-thumb { background-color: #ccc; border-radius: 10px; }
+
+.schedule-display::-webkit-scrollbar { 
+    width: 5px; 
+}
+.schedule-display::-webkit-scrollbar-track { 
+    background: transparent; 
+}
+.schedule-display::-webkit-scrollbar-thumb { 
+    background-color: #ccc; 
+    border-radius: 10px; 
+}
+
+/* 커스텀 스크롤 인디케이터 (모바일용) */
+.scroll-indicator {
+    position: absolute;
+    right: 2px;
+    top: 22px;
+    width: 4px;
+    height: calc(100% - 24px);
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 2px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.scroll-indicator.visible {
+    opacity: 1;
+}
+
+.scroll-indicator-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--ku-crimson);
+    border-radius: 2px;
+    transition: background-color 0.2s;
+}
+
+.scroll-indicator-thumb.scrolling {
+    background-color: #6b1f29;
+}
+/* ==== [스크롤 인디케이터 끝] ==== */
 
 .scroll-guide {
     display: none;
@@ -805,4 +865,29 @@ body {
     color: var(--text-secondary);
     text-align: center;
     padding: 10px 0;
+}
+
+/* 모바일 환경 추가 최적화 */
+@media (max-width: 480px) {
+    .calendar-container {
+        width: 95%;
+        padding: 15px;
+    }
+    
+    .calendar-modal-title h1 {
+        font-size: 1.3em;
+    }
+    
+    .calendar-body-wrapper {
+        padding: 0 8px; /* 모바일에서 더 많은 여백 */
+        margin: 0 -8px;
+    }
+    
+    .date-cell {
+        font-size: 0.85em;
+    }
+    
+    .schedule-display {
+        max-height: 120px; /* 모바일에서 조금 더 높게 */
+    }
 }

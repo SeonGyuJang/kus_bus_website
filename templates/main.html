@@ -55,6 +55,11 @@
 
     <div id="calendar-modal" class="modal-overlay">
         <div class="calendar-container">
+            <!-- 캘린더 제목 추가 -->
+            <div class="calendar-modal-title">
+                <h1>학사일정 캘린더</h1>
+            </div>
+            
             <div class="calendar-header">
                 <div id="calendar-title-container" class="calendar-title-container">
                     <h2 id="calendar-title"></h2>
@@ -81,21 +86,24 @@
                         <div class="day-name">금</div>
                         <div class="day-name saturday">토</div>
                     </div>
-                    <div class="calendar-grid" id="calendar-body">
-                        </div>
+                    <div class="calendar-body-wrapper">
+                        <div class="calendar-grid" id="calendar-body"></div>
+                    </div>
                 </div>
                 <div id="date-picker" class="date-picker">
                     <div class="picker-header">
                         <select id="year-select"></select>
                     </div>
-                    <div id="month-select" class="month-select">
-                        </div>
+                    <div id="month-select" class="month-select"></div>
                 </div>
             </div>
 
             <div id="schedule-display" class="schedule-display">
                 <div class="scroll-guide">
                     <span class="scroll-icon">↓</span> 스크롤하여 더 보기
+                </div>
+                <div class="scroll-indicator">
+                    <div class="scroll-indicator-thumb"></div>
                 </div>
             </div>
         </div>

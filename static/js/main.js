@@ -283,6 +283,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const monthSelect = document.getElementById('month-select');
     const arrowIcon = document.querySelector('.arrow-down');
     const scrollGuide = document.querySelector('.scroll-guide');
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    const scrollIndicatorThumb = document.querySelector('.scroll-indicator-thumb');
 
     // State
     const today = new Date();
@@ -290,6 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedDate = new Date(); // The actively clicked date
     const holidaysCache = new Map();
     let scheduleData = new Map();
+    let scrollTimeout;
 
     // --- Data Loading ---
     async function getHolidays(year) {
@@ -349,13 +352,40 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- 스크롤 인디케이터 업데이트 ---
+    function updateScrollIndicator() {
+        const hasScroll = scheduleDisplay.scrollHeight > scheduleDisplay.clientHeight;
+        
+        if (hasScroll) {
+            scrollIndicator.classList.add('visible');
+            
+            // 스크롤바 thumb 높이와 위치 계산
+            const scrollRatio = scheduleDisplay.clientHeight / scheduleDisplay.scrollHeight;
+            const thumbHeight = Math.max(20, scrollIndicator.clientHeight * scrollRatio);
+            const maxScroll = scheduleDisplay.scrollHeight - scheduleDisplay.clientHeight;
+            const scrollPercentage = scheduleDisplay.scrollTop / maxScroll;
+            const maxThumbTop = scrollIndicator.clientHeight - thumbHeight;
+            const thumbTop = maxThumbTop * scrollPercentage;
+            
+            scrollIndicatorThumb.style.height = `${thumbHeight}px`;
+            scrollIndicatorThumb.style.top = `${thumbTop}px`;
+        } else {
+            scrollIndicator.classList.remove('visible');
+        }
+    }
+
     // --- UI Rendering & Logic ---
     function checkScrollVisibility() {
-        if (scheduleDisplay.scrollHeight > scheduleDisplay.clientHeight) {
+        const hasScroll = scheduleDisplay.scrollHeight > scheduleDisplay.clientHeight;
+        
+        if (hasScroll) {
             scrollGuide.classList.add('visible');
         } else {
             scrollGuide.classList.remove('visible');
         }
+        
+        // 스크롤 인디케이터 업데이트
+        updateScrollIndicator();
     }
 
     function displayScheduleForDate(date) {
@@ -369,6 +399,8 @@ document.addEventListener('DOMContentLoaded', () => {
             content += '<div class="no-schedule">학사일정이 없습니다.</div>';
         }
         scheduleDisplay.innerHTML = content;
+        
+        // 스크롤 가이드와 인디케이터 업데이트
         checkScrollVisibility();
     }
     
@@ -531,9 +563,30 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleDatePicker(!datePicker.classList.contains('visible'));
     });
 
+    // 스크롤 이벤트 리스너 (스크롤 가이드 숨김 & 인디케이터 업데이트)
     scheduleDisplay.addEventListener('scroll', () => {
+        // 스크롤 가이드 숨김
         if (scrollGuide.classList.contains('visible')) {
             scrollGuide.classList.remove('visible');
+        }
+        
+        // 스크롤 인디케이터 업데이트
+        updateScrollIndicator();
+        
+        // 스크롤 중 표시
+        scrollIndicatorThumb.classList.add('scrolling');
+        
+        // 스크롤 멈춤 감지
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            scrollIndicatorThumb.classList.remove('scrolling');
+        }, 150);
+    });
+
+    // 윈도우 리사이즈 시 스크롤 인디케이터 업데이트
+    window.addEventListener('resize', () => {
+        if (scheduleDisplay.scrollHeight > 0) {
+            updateScrollIndicator();
         }
     });
 
